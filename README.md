@@ -8,6 +8,7 @@
 
 - `removeHTMLTag.py` 移除HTML标签
 - `gitlabAutoRegistry.py` GitLab 自动注册账户
+- `weather.py` 发送天气到邮箱
 
 ## Bash
 
