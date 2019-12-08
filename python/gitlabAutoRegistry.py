@@ -1,4 +1,5 @@
 #encoding:utf-8
+
 from selenium import webdriver
 
 def parserDate(loginUrl,superName,superPassWord,data):
@@ -35,12 +36,12 @@ def parserDate(loginUrl,superName,superPassWord,data):
 
     driver.close()
       
-def main():
+if __name__ == '__main__':
     data = {}
     superName = input("超级用户名：")
     superPassWord = input("密码：")
     try:
-        with open('data.txt','r') as f:
+        with open(sys.argv[1],'r') as f:
             tmps = f.readlines()
             for i in tmps:
                 tmpData = i.strip().split('\t')
@@ -49,4 +50,3 @@ def main():
     except:
         print("无法找到数据文件data.txt或数据文件格式错误(name\temail)")
     input("程序结束")
-main()  

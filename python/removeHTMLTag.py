@@ -1,6 +1,6 @@
 #encoding utf-8
 
-import re
+import re,sys
 
 def replaceCharEntity(htmlstr):
     CHAR_ENTITIES={'nbsp':' ','160':' ',
@@ -43,6 +43,7 @@ def filter_tags(htmlstr):
     s=replaceCharEntity(s)
     return s
 
-with open('demo', 'r',encoding='UTF-8') as f:
-    html = f.read()
-    print(filter_tags(html))
+if __name__ == '__main__':
+    with open(sys.argv[1], 'r',encoding='UTF-8') as f:
+        html = f.read()
+        print(filter_tags(html))
