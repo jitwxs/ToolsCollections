@@ -24,8 +24,13 @@ def getSoupObj(url):
 def get_download_links(url):
     soup = getSoupObj(url)
     try:
-        contents = soup('div',{'id':'content'})
-        links = contents[0]('center')[0]('a')[0]['href']
+        contents = soup('div',{'class':'entry-content'})
+        a_list = contents[0]('a')
+        links = ''
+        for a in a_list:
+            if 'rg.to' in a['href']:
+                links = a['href']
+                break
         return links
     except Exception:
         traceback.print_exc()
@@ -37,13 +42,10 @@ def get_page_data(url):
     is_end = False
     result = {}
     try:
-        contents = soup('div',{'id':'content'})
-        articles = contents[0].find_all('article')
-        for article in articles:
+        for article in soup('article'):
             title = article('h1', {'class': 'entry-title'})[0]
             name = title('a')[0].text
             href = title('a')[0]['href']
-
             download_links = get_download_links(href)
             result[name] = download_links
     except Exception:
